@@ -1,0 +1,133 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+    <a-assets asset-loader>
+           <!-- Load all assets -->
+           <a-asset-item id="arrow" src="assets/models/arrow.glb"></a-asset-item>
+           <a-asset-item id="plusOne" src="assets/models/plusOne.glb"></a-asset-item>
+           <a-asset-item id="minusOne" src="assets/models/minusOne.glb"></a-asset-item>
+    </a-assets>
+     <a-camera id="player"
+               camera="userHeight:1.6"
+               log="message: What's up!">
+               <a-text 
+                 value="Use WASD to navigate scene." 
+                 position="0 0.5 -0.75"
+                 scale="0.25 0.25"
+                 align="center"
+                 color="#04143c"
+             ></a-text>
+     </a-camera>
+     <a-cylinder position="0 0.5 0"
+                 radius="0.25"
+                 color="violet"
+                 shadow="receive:true; cast:true"
+     ></a-cylinder>
+     <a-entity>
+         <!-- Arrow Pointing North - Forward or Z Axis-->
+         <a-gltf-model 
+         src="#arrow" 
+         shadow="receive:true; cast:true"
+         position="0 0.25 -1"
+         >
+             <a-gltf-model
+                 src="#minusOne"
+                 position="0 0.5 -1"
+             ></a-gltf-model>
+             <a-text 
+                 value='position="0 0 -1" = Z Axis' 
+                 position="0 1.5 -1" 
+                 align="center" 
+                 color="#173b9b"
+             ></a-text>
+         </a-gltf-model>
+         
+         <!-- Arrow Pointing West -->
+         <a-gltf-model 
+         src="#arrow" 
+         shadow="receive:true; cast:true"
+         rotation="0 90 0"
+         position="-1 0.25 0"
+         >
+             <a-gltf-model
+                 src="#minusOne"
+                 position="0 0.5 -1"
+             ></a-gltf-model>
+             <a-text 
+                 value='position="-1 0 0" = X Axis' 
+                 position="0 1.5 -1" 
+                 align="center" 
+                 color="#173b9b"
+             ></a-text>
+         </a-gltf-model>
+         
+         <!-- Arrow Pointing East -->
+         <a-gltf-model 
+         src="#arrow" 
+         shadow="receive:true; cast:true"
+         rotation="0 -90 0"
+         position="1 0.25 0"
+         >
+             <a-gltf-model
+                 src="#plusOne"
+                 position="0 0.5 -1"
+             ></a-gltf-model>
+             <a-text 
+                 value='position="1 0 0" = X Axis' 
+                 position="0 1.5 -1" 
+                 align="center" 
+                 color="#173b9b"
+             ></a-text>
+         </a-gltf-model>
+         
+         <!-- Arrow Pointing South -->
+         <a-gltf-model 
+         src="#arrow" 
+         shadow="receive:true; cast:true"
+         rotation="0 180 0"
+         position="0 0.25 1"
+         >
+             <a-gltf-model
+                 src="#plusOne"
+                 position="0 0.5 -1"
+             ></a-gltf-model>
+             <a-text 
+                 value='position="0 0 1" = Z Axis' 
+                 position="0 1.5 -1" 
+                 align="center" 
+                 color="#173b9b"
+             ></a-text>
+         </a-gltf-model>
+         
+         <!-- Arrow Pointing Up - Y Axis-->
+         <a-gltf-model 
+         src="#arrow" 
+         shadow="receive:true; cast:true"
+         rotation="90 0 0"
+         position="0 1.2 0"
+         scale="0.5 0.5 0.5"
+         >
+             <a-text 
+                 value='position="0 1 0" = Y Axis'
+                  rotation="-90 0 0"
+                 position="0 0 -2.5" 
+                 align="center" 
+                 color="#173b9b"
+             ></a-text>
+         </a-gltf-model>
+     </a-entity>
+     <a-entity>
+         <a-box position="-1 0.5 -3" rotation="0 45 0" color="#2834cc"></a-box>
+         <a-sphere position="0 1.25 -5" radius="1.25" color="#b10101"></a-sphere>
+         <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#de9000"></a-cylinder>
+         <a-plane position="0 0 0" rotation="-90 0 0" width="10" height="10" color="#7BC8A4" shadow="receive:true; cast:true"></a-plane>
+     </a-entity>
+     
+      <a-sky color="#ECECEC"></a-sky>
+      
+    </a-scene>
+  </body>
+</html>

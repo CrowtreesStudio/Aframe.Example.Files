@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>A-Frame Gaze Based Click with Warm Up - Opacity</title>
+    <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+    <script src="javascript/cursor.js" ></script>
+</head>
+<body>
+    <a-scene>
+        <!-- Camera -->        
+       <a-camera camera="userHeight:2" universal-controls="movementEnabled: false">
+           <!-- Cursor: Fused-base is also known as Gazed-based -->
+           <!-- Event is triggered if user gazes at target for set time  -->
+           <!-- Cursor will "warm up" before activating the click  -->
+           <a-text
+              id="text"
+               value="Gaze at Box for 2 secs" 
+               position="0 -0.25 -3" 
+               align="center" 
+               color="#cecece">
+           </a-text>
+           
+           <!-- Cursor:  Set raycaster to only activate on specific class of object  -->
+           <!--
+               raycaster looks for objects with the class name of '.clickable'
+           -->
+           <a-cursor     
+               cursor="fuse: true"
+               raycaster="objects: .clickable"   
+               position="0 0 -1"
+               geometry="primitive:ring; radiusInner:0.022; radiusOuter:0.028; segmentsTheta: 18; thetaStart:90; thetaLength:0"   
+               material="color:#117174; shader: flat">
+               
+               <!-- This entity is not animated - this is "base" color reticle  -->
+               <a-entity
+                   id="reticleBase"               
+                   position="0 0 0"
+                   geometry="primitive:ring; radiusInner:0.02; radiusOuter:0.03; segmentsTheta: 18"
+                   material="color:white; shader: flat"
+                ></a-entity>
+                
+               <!-- This animates the a-cursor geometry showing "warmup"  -->
+               <!-- currently 'fills' counter-clockwise but can be changed
+               to 'fill' clockwise if begin="cursor-fusing" & begin="click mouseleave"
+               are switched -->
+               <a-animation
+                   begin="cursor-fusing"
+                   easing="linear"
+                   attribute="geometry.thetaLength"
+                   fill="none"
+                   from="0"
+                   to="360"
+                   dur=1500>
+               </a-animation>
+               <a-animation
+                   begin="click mouseleave"
+                   easing="linear"
+                   attribute="geometry.thetaLength"
+                   fill="forwards"
+                   from="0"
+                   to="0"
+                   dur=0>
+               </a-animation>
+           </a-cursor>
+           
+       </a-camera>        
+        <!-- Sky -->
+        <a-sky color='#4baeeb'></a-sky>
+        
+        <!-- Objects in scene using primitives -->
+        <a-box class="clickable" cursor-listener material="color: yellow" scale="2 2 2" position="-2 2 -4" ></a-box>
+        <a-box class="clickable" cursor-listener material="color: blue" scale="2 2 2" position="2 2 -4" ></a-box>
+        <a-box class="clickable" cursor-listener material="color: blue" scale="2 2 2" position="0 4 -4" ></a-box>
+        <a-plane color="#e0c054" height="30" width="30" rotation="-90 0 0" position="0 0 -4"></a-plane>
+           
+        <!-- Lighting -->
+        <a-entity light="type:ambient; color:#9bfff7; intensity:0.5;"></a-entity>
+        
+        <!-- Directional Light -->
+        <a-entity light="type:directional; color:#AAA; intensity:1;" position="-1 0.5 1" ></a-entity>
+           
+    </a-scene>
+    
+</body>
+</html>
