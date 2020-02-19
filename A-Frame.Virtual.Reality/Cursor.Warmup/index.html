@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>A-Frame Gaze Based Click with Warm Up - Opacity</title>
-    <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
     <script src="javascript/cursor.js" ></script>
 </head>
 <body>
@@ -25,13 +25,37 @@
            <!--
                raycaster looks for objects with the class name of '.clickable'
            -->
-           <a-cursor     
+           <!-- a-animate(s) the a-cursor geometry showing "warmup"  -->
+            <!-- currently 'fills' counter-clockwise but can be changed
+               to 'fill' clockwise if begin="cursor-fusing" & begin="click mouseleave"
+               are switched -->
+           <a-cursor 
                cursor="fuse: true"
                raycaster="objects: .clickable"   
                position="0 0 -1"
                geometry="primitive:ring; radiusInner:0.022; radiusOuter:0.028; segmentsTheta: 18; thetaStart:90; thetaLength:0"   
-               material="color:#117174; shader: flat">
-               
+               material="color:#117174; shader: flat"
+                     animation__enter="property:geometry.thetaLength;
+                                       startEvents: fusing;
+                                       easing:linear;
+                                       fill:none;
+                                       from:0;
+                                       to:360;
+                                       dur:1500;"
+                     animation__click="property:geometry.thetaLength;
+                                       startEvents: click;
+                                       easing:linear;
+                                       fill:forwards;
+                                       from:0;
+                                       to:0;
+                                       dur:0;"
+                     animation__leave="property:geometry.thetaLength;
+                                       startEvents: mouseleave;
+                                       easing:linear;
+                                       fill:forwards;
+                                       from:0;
+                                       to:0;
+                                       dur:0;">
                <!-- This entity is not animated - this is "base" color reticle  -->
                <a-entity
                    id="reticleBase"               
@@ -40,28 +64,7 @@
                    material="color:white; shader: flat"
                 ></a-entity>
                 
-               <!-- This animates the a-cursor geometry showing "warmup"  -->
-               <!-- currently 'fills' counter-clockwise but can be changed
-               to 'fill' clockwise if begin="cursor-fusing" & begin="click mouseleave"
-               are switched -->
-               <a-animation
-                   begin="cursor-fusing"
-                   easing="linear"
-                   attribute="geometry.thetaLength"
-                   fill="none"
-                   from="0"
-                   to="360"
-                   dur=1500>
-               </a-animation>
-               <a-animation
-                   begin="click mouseleave"
-                   easing="linear"
-                   attribute="geometry.thetaLength"
-                   fill="forwards"
-                   from="0"
-                   to="0"
-                   dur=0>
-               </a-animation>
+               
            </a-cursor>
            
        </a-camera>        
