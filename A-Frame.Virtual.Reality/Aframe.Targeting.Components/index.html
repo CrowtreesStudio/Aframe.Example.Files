@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <title>A-Frame Gaze Based Click with Warm Up - Opacity</title>
     <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
+    <script src="javascript/aframe-environment-component.min.js"></script>
     <script src="javascript/cursor.js" ></script>
 </head>
 <body>
-    <a-scene id="scene">
+    <a-scene id="scene" environment scenechange>
         <!-- Camera -->        
        <a-camera universal-controls="movementEnabled: false">
            <!-- Cursor: Fused-base is also known as Gazed-based -->
@@ -53,7 +54,7 @@
                                        dur:0.001;">
                                        
                <!-- This is the target reticle  -->
-               <a-circle radius="0.005" material="color:orange; shader:flat;"></a-circle>               
+               <a-circle radius="0.005" color="lightblue" theta-length="360"></a-circle>               
            </a-cursor>
            
        </a-camera>        
@@ -63,10 +64,7 @@
         <!-- Objects in scene using primitives -->
         <a-box class="clickable" cursor-listener material="color: blue" scale="2 2 2" position="-2 1 -4" ></a-box>
         <a-box class="clickable" cursor-listener material="color: blue" scale="2 2 2" position="2 1 -4" ></a-box>
-        <a-box class="clickable" cursor-listener material="color: blue" scale="2 2 2" position="0 3 -4" ></a-box>
-        
-        <a-plane position="0 0 -4" rotation="-90 0 0" width="10" height="10" color="#b7c13d"></a-plane>           
-                   
+        <a-box class="clickable" cursor-listener material="color: blue" scale="2 2 2" position="0 3 -4" ></a-box>           
         <!-- Lighting -->
         <a-entity light="type:ambient; color:#9bfff7; intensity:0.5;"></a-entity>
         

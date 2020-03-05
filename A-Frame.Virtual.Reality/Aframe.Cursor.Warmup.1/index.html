@@ -57,14 +57,15 @@
                                        to:0;
                                        dur:0;">
                <!-- This entity is not animated - this is "base" color reticle  -->
-               <a-entity
+<!--             geometry="primitive:ring; radiusInner:0.02; radiusOuter:0.03; segmentsTheta: 18"-->
+               <a-ring
                    id="reticleBase"               
                    position="0 0 0"
-                   geometry="primitive:ring; radiusInner:0.02; radiusOuter:0.03; segmentsTheta: 18"
+                   radius-inner="0.02"
+                   radius-outer="0.03"
+                   segments-theta="18"
                    material="color:white; shader: flat"
-                ></a-entity>
-                
-               
+                ></a-ring>
            </a-cursor>
            
        </a-camera>        
@@ -73,7 +74,7 @@
         
         <!-- Objects in scene using primitives -->
         <a-box class="clickable" cursor-listener material="color: yellow" scale="2 2 2" position="-2 2 -4" ></a-box>
-        <a-box class="clickable" cursor-listener material="color: blue" scale="2 2 2" position="2 2 -4" ></a-box>
+        q<a-box class="clickable" cursor-listener material="color: blue" scale="2 2 2" position="2 2 -4" ></a-box>
         <a-box class="clickable" cursor-listener material="color: blue" scale="2 2 2" position="0 4 -4" ></a-box>
         <a-plane color="#e0c054" height="30" width="30" rotation="-90 0 0" position="0 0 -4"></a-plane>
            
