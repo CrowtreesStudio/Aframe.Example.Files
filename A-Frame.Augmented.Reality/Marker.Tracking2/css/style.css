@@ -1,0 +1,21 @@
+body {
+    margin : 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#message{
+	position: absolute;
+	top: 0;
+	width: 200px;
+	background-color:blueviolet;
+    visibility: hidden;
+}
+
+#copy{
+    text-align: center;
+}
+
+#words{
+    color: white;
+}
